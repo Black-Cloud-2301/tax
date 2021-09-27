@@ -203,9 +203,9 @@ const SearchField = () => {
 
   return (
     <Box bg="gray.200" minH="100vh" p={20}>
-      <Box>
+      <Box w="100%" text="center">
         <FormLabel ml={8}> Nhập số điện thoại để tìm </FormLabel>
-        <InputGroup size="md" w={60} mb={12}>
+        <InputGroup size="md" w={60} mb={12} mx="auto">
           <Input
             bg="white"
             pr="4.5rem"
@@ -219,10 +219,11 @@ const SearchField = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
-        {open && (
+
+        {open && data ? (
           <Box>
             <Box mx="auto">
-              <Flex mb={20}>
+              <Flex mb={20} w="50vw" justifyContent="space-around" mx="auto">
                 <Box>
                   <Text mb={4}>Họ và Tên:</Text>
                   <Text mb={4}>Ngày tháng năm sinh:</Text>
@@ -379,6 +380,19 @@ const SearchField = () => {
                 </Button>
               </Link>
             </Box>
+          </Box>
+        ) : (
+          <Box w="100%" textAlign="center">
+            <Text mb="4rem">Số điện thoại không tồn tại</Text>
+            <Link to="/">
+              <Button
+                bg="blue.500"
+                color="white"
+                _hover={{ background: 'red.500', color: 'white' }}
+              >
+                Tạo mới
+              </Button>
+            </Link>
           </Box>
         )}
       </Box>
