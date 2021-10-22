@@ -12,40 +12,46 @@ import {
   Flex,
   Button,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { data } from '../data/tempData';
+import { Link,useParams } from 'react-router-dom';
+// import { data } from '../data/tempData';
 import { noteData } from '../database/configFirebase';
+import { useGlobalContext } from '../context';
 
 //thêm dữ liệu vào firebase
-const addData = () => {
-  var dataAdd = {};
-  dataAdd.name = data.name;
-  dataAdd.email = data.email;
-  dataAdd.address = data.address;
-  dataAdd.phone = data.phone;
-  dataAdd.day = data.day;
-  dataAdd.month = data.month;
-  dataAdd.year = data.year;
-  dataAdd.taxYear = data.taxYear;
-  dataAdd.dependent = data.dependent;
-  dataAdd.bhxh = data.bhxh;
-  dataAdd.valueMonth1 = data.valueMonth1;
-  dataAdd.valueMonth2 = data.valueMonth2;
-  dataAdd.valueMonth3 = data.valueMonth3;
-  dataAdd.valueMonth4 = data.valueMonth4;
-  dataAdd.valueMonth5 = data.valueMonth5;
-  dataAdd.valueMonth6 = data.valueMonth6;
-  dataAdd.valueMonth7 = data.valueMonth7;
-  dataAdd.valueMonth8 = data.valueMonth8;
-  dataAdd.valueMonth9 = data.valueMonth9;
-  dataAdd.valueMonth10 = data.valueMonth10;
-  dataAdd.valueMonth11 = data.valueMonth11;
-  dataAdd.valueMonth12 = data.valueMonth12;
-  //console.log(dataAdd);
-  noteData.push(dataAdd);
-};
+// const addData = () => {
+//   var dataAdd = {};
+//   dataAdd.name = data.name;
+//   dataAdd.email = data.email;
+//   dataAdd.address = data.address;
+//   dataAdd.phone = data.phone;
+//   dataAdd.day = data.day;
+//   dataAdd.month = data.month;
+//   dataAdd.year = data.year;
+//   dataAdd.taxYear = data.taxYear;
+//   dataAdd.dependent = data.dependent;
+//   dataAdd.bhxh = data.bhxh;
+//   dataAdd.valueMonth1 = data.valueMonth1;
+//   dataAdd.valueMonth2 = data.valueMonth2;
+//   dataAdd.valueMonth3 = data.valueMonth3;
+//   dataAdd.valueMonth4 = data.valueMonth4;
+//   dataAdd.valueMonth5 = data.valueMonth5;
+//   dataAdd.valueMonth6 = data.valueMonth6;
+//   dataAdd.valueMonth7 = data.valueMonth7;
+//   dataAdd.valueMonth8 = data.valueMonth8;
+//   dataAdd.valueMonth9 = data.valueMonth9;
+//   dataAdd.valueMonth10 = data.valueMonth10;
+//   dataAdd.valueMonth11 = data.valueMonth11;
+//   dataAdd.valueMonth12 = data.valueMonth12;
+//   //console.log(dataAdd);
+//   noteData.push(dataAdd);
+// };
 
 const OutputField = () => {
+  const {id} = useParams();
+  console.log(id);
+  const {listEmploy} = useGlobalContext();
+
+  const data = listEmploy.find((item) => item.id === id)
   const oneMonthTax = income => {
     if (data.taxYear >= 2021) {
       let result =
@@ -81,7 +87,7 @@ const OutputField = () => {
       return result;
     }
   };
-
+  //thuế thực tế
   const realTax = () => {
     if (data.taxYear >= 2021) {
       let result =
@@ -142,7 +148,7 @@ const OutputField = () => {
       else return result * 0.35 - 217.8;
     }
   };
-
+  //thuế tạm thu
   const tempTax = () => {
     const result =
       oneMonthTax(data.valueMonth1) +
@@ -160,28 +166,48 @@ const OutputField = () => {
     return result.toFixed(2);
   };
 
-  addData();
+  // addData();
 
   return (
     <Box bg="gray.200" p={20}>
       <Box mx="auto">
-        <Flex mb={20}>
-          <Box>
-            <Text mb={4}>Họ và Tên:</Text>
-            <Text mb={4}>Ngày tháng năm sinh:</Text>
-            <Text mb={4}>Số điện thoại:</Text>
-            <Text mb={4}>Email:</Text>
-            <Text mb={4}>Địa chỉ: </Text>
-          </Box>
-          <Box ml={12}>
-            <Text mb={4}>{data.name}</Text>
-            <Text mb={4}>
-              {data.day}/{data.month}/{data.year}
-            </Text>
-            <Text mb={4}>{data.phone}</Text>
-            <Text mb={4}>{data.email}</Text>
-            <Text mb={4}>{data.address}</Text>
-          </Box>
+        <Flex mb={20} justify="space-center">
+          <Flex w="50%"  justify='center'>
+            <Box>
+              <Text mb={4}>Mã nhân viên:</Text>
+              <Text mb={4}>Ngày tháng năm sinh:</Text>
+              <Text mb={4}>Số điện thoại:</Text>
+              <Text mb={4}>Email:</Text>
+              <Text mb={4}>Địa chỉ: </Text>
+            </Box>
+            <Box ml={12}>
+              <Text mb={4}>{data.id}</Text>
+              <Text mb={4}>
+                {data.day}/{data.month}/{data.year}
+              </Text>
+              <Text mb={4}>{data.phone}</Text>
+              <Text mb={4}>{data.email}</Text>
+              <Text mb={4}>{data.address}</Text>
+            </Box>
+          </Flex>
+          <Flex w="50%" justify='center'>
+            <Box>
+              <Text mb={4}>Họ và Tên:</Text>
+              <Text mb={4}>Năm tính thuế</Text>
+              <Text mb={4}>BHXH:</Text>
+              <Text mb={4}>Số người phụ thuộc:</Text>
+             
+            </Box>
+            <Box ml={12}>
+              <Text mb={4}>{data.name}</Text>
+              <Text mb={4}>
+                {data.taxYear}
+              </Text>
+              <Text mb={4}>{data.bhxh?'Có':'Không'}</Text>
+              <Text mb={4}>{data.dependent}</Text>
+              
+            </Box>
+          </Flex>
         </Flex>
         <Table
           variant="simple"
@@ -294,7 +320,7 @@ const OutputField = () => {
             bg="white"
             _hover={{ background: 'blue.500', color: 'white' }}
           >
-            Về Trang Input
+            Về trang chủ
           </Button>
         </Link>
       </Box>

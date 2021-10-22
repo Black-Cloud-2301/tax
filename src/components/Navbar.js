@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Links = ['Tính Thuế', 'Tìm Kiếm'];
+const Links = ['Trang chủ','Thêm nhân viên', 'Tìm Kiếm'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -75,9 +75,21 @@ export default function Navbar() {
                   textDecoration: 'none',
                   bg: useColorModeValue('gray.200', 'gray.700'),
                 }}
-                href="search"
+                href="/input"
               >
                 {Links[1]}
+              </Link>
+              <Link
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: useColorModeValue('gray.200', 'gray.700'),
+                }}
+                href="/search"
+              >
+                {Links[2]}
               </Link>
             </HStack>
           </HStack>

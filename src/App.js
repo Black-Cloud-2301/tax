@@ -5,6 +5,7 @@ import OutputField from './outputPage/OutputField';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchField from './outputPage/SearchField';
 import Navbar from './components/Navbar';
+import Home from './home/Home';
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={InputField} />
-          <Route exact path="/output" component={OutputField} />
-          <Route exact path="/search" component={SearchField} />
+          <Route exact path="/"><Home/></Route>
+          <Route  path="/input" component={InputField} />
+          <Route  path="/output/:id" component={OutputField} />
+          <Route  path="/search" component={SearchField} />
         </Switch>
       </Router>
     </ChakraProvider>

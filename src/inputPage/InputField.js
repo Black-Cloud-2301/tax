@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   Input,
   FormLabel,
@@ -11,19 +11,38 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { data } from '../data/tempData';
+import { useGlobalContext } from '../context';
+
+
 
 const InputField = () => {
+  const {setEmployee,employee,handleAddEmployee,listEmploy} = useGlobalContext();
+ 
+  
+
+  
+    
+  
   return (
     <>
       <Box w="70%" mx="auto">
-        <Grid mt={20} templateColumns="repeat(2,1fr)" gap={12}>
+        <Grid mt={20} templateColumns="repeat(3,1fr)" gap={12}>
+         <GridItem>
+            <FormLabel> Mã nhân viên </FormLabel>
+            <Input
+              placeholder="0001"
+              w="30"
+              errorBorderColor="red.300"
+              onChange={(e) => setEmployee({...employee,id: e.target.value })}
+            />
+          </GridItem>
           <GridItem>
             <FormLabel> Họ và Tên </FormLabel>
             <Input
               placeholder="Nguyễn Văn A"
               size="md"
               errorBorderColor="red.300"
-              onChange={e => (data.name = e.target.value)}
+              onChange={(e) => setEmployee({...employee,name: e.target.value })}
             />
           </GridItem>
           <GridItem>
@@ -33,7 +52,8 @@ const InputField = () => {
               <Select
                 w={20}
                 placeholder="0"
-                onChange={e => (data.day = e.target.value)}
+              onChange={(e) => setEmployee({...employee,day: e.target.value })}
+                
               >
                 <option>1</option>
                 <option>2</option>
@@ -72,7 +92,8 @@ const InputField = () => {
                 w={20}
                 selected="selected"
                 placeholder="0"
-                onChange={e => (data.month = e.target.value)}
+                onChange={(e) => setEmployee({...employee,month: e.target.value })}
+
               >
                 <option>1</option>
                 <option>2</option>
@@ -92,17 +113,22 @@ const InputField = () => {
                 placeholder="2021"
                 w={20}
                 size="md"
-                onChange={e => (data.year = e.target.value)}
+                onChange={(e) => setEmployee({...employee,year: e.target.value })}
+
               />
             </Flex>
           </GridItem>
+        </Grid>
+        <Grid mt={20} templateColumns="repeat(2,1fr)" gap={12}>
+
           <GridItem>
             <FormLabel> Số điện thoại </FormLabel>
             <Input
               type="tel"
               placeholder="0909 090 099"
               size="md"
-              onChange={e => (data.phone = e.target.value)}
+              onChange={(e) => setEmployee({...employee,phone: e.target.value })}
+
             />
           </GridItem>
           <GridItem>
@@ -111,7 +137,8 @@ const InputField = () => {
               type="email"
               placeholder="thue@gmail.com"
               size="md"
-              onChange={e => (data.email = e.target.value)}
+              onChange={(e) => setEmployee({...employee,email: e.target.value })}
+
             />
           </GridItem>
           <GridItem colSpan={2}>
@@ -120,7 +147,8 @@ const InputField = () => {
               type="text"
               placeholder="Nghiêm Xuân Yêm, Đại Kim, Hoàng Mai, Hà Nội "
               size="md"
-              onChange={e => (data.address = e.target.value)}
+              onChange={(e) => setEmployee({...employee,address: e.target.value })}
+
             />
           </GridItem>
           <GridItem colSpan={2}>
@@ -132,7 +160,7 @@ const InputField = () => {
                   placeholder="2021"
                   size="md"
                   w={32}
-                  onChange={e => (data.taxYear = parseInt(e.target.value))}
+                  onChange={e => setEmployee({...employee,taxYear: parseInt(e.target.value)})}
                 />
               </Box>
               <Box>
@@ -141,7 +169,7 @@ const InputField = () => {
                   type="text"
                   size="md"
                   placeholder="Chọn"
-                  onChange={e => (data.bhxh = e.target.value)}
+                  onChange={e => setEmployee({...employee,bhxh : Boolean(e.target.option)})}
                 >
                   <option value={true}>Có</option>
                   <option value={false}>Không</option>
@@ -154,7 +182,7 @@ const InputField = () => {
                   placeholder="0"
                   size="md"
                   w={36}
-                  onChange={e => (data.dependent = parseInt(e.target.value))}
+                  onChange={e => setEmployee({...employee,dependent : parseInt(e.target.value)})}
                 />
               </Box>
             </Flex>
@@ -169,7 +197,7 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth1 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth1 :parseFloat(e.target.value)})}
             />
           </GridItem>
           <GridItem>
@@ -177,7 +205,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth2 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth2 :parseFloat(e.target.value)})}
+
             />
           </GridItem>
           <GridItem>
@@ -185,7 +214,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth3 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth3 :parseFloat(e.target.value)})}
+             
             />
           </GridItem>
           <GridItem>
@@ -193,7 +223,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth4 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth4 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -201,7 +232,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth5 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth5 :parseFloat(e.target.value)})}
+             
             />
           </GridItem>
           <GridItem>
@@ -209,7 +241,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth6 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth6 :parseFloat(e.target.value)})}
+             
             />
           </GridItem>
           <GridItem>
@@ -217,7 +250,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth7 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth7 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -225,7 +259,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth8 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth8 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -233,7 +268,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth9 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth9 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -241,7 +277,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth10 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth10 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -249,7 +286,8 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth11 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth11 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
           <GridItem>
@@ -257,14 +295,15 @@ const InputField = () => {
             <Input
               placeholder="0"
               size="md"
-              onChange={e => (data.valueMonth12 = parseFloat(e.target.value))}
+              onChange={e => setEmployee({...employee,valueMonth12 :parseFloat(e.target.value)})}
+              
             />
           </GridItem>
         </Grid>
         <Box textAlign="center">
-          <Link to="/output">
-            <Button my={12} w={44}>
-              Tính thuế TNCN
+          <Link to="/">
+            <Button my={12} w={60} onClick={handleAddEmployee}>
+              Nhập thông tin nhân viên 
             </Button>
           </Link>
         </Box>
