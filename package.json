@@ -39,9 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "main": "index.js",
-  "repository": "https://github.com/Black-Cloud-2301/thue-tncn.git",
-  "author": "Black-Cloud-2301 <tuank2301@gmail.com>",
-  "license": "MIT"
+  }
+  
 }
