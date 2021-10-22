@@ -42,15 +42,23 @@ const AppProvider = ({children}) => {
         setListEmploy([...listEmploy,employee])
         setEmployee(employeeDefault);
         setIsAdd(!isAdd)
+    }
+
+    const handleDelete = (id) => {
+        const newList = listEmploy.filter((item) => item.id!==id);
+        console.log(newList)
+        // localStorage.removeItem('employees');
+        localStorage.setItem('employees', JSON.stringify(newList));
 
     }
+
     useEffect(() => {
         localStorage.setItem('employees', JSON.stringify(listEmploy))
     },[isAdd])
 
     return <AppContext.Provider
         value={{
-            setEmployee,employee,handleAddEmployee,listEmploy
+            setEmployee,employee,handleAddEmployee,listEmploy,handleDelete
         }}>
     {children}</AppContext.Provider>
 }

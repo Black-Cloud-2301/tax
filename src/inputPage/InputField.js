@@ -169,7 +169,7 @@ const InputField = () => {
                   type="text"
                   size="md"
                   placeholder="Chọn"
-                  onChange={e => setEmployee({...employee,bhxh : Boolean(e.target.option)})}
+                  onChange={(e) => setEmployee({...employee,bhxh :e.target.value})}
                 >
                   <option value={true}>Có</option>
                   <option value={false}>Không</option>

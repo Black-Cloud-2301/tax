@@ -7,7 +7,7 @@ import { realTax } from '../handleTaxTNCN/handleTax';
 
 const Home = () => {
     const {listEmploy} = useGlobalContext();
-    console.log(listEmploy);
+    // console.log(listEmploy);
     
     return (
         <>  
@@ -26,14 +26,17 @@ const Home = () => {
                 {listEmploy.map((employee) => {
                     const {id,name,taxYear,bhxh,dependent} = employee;
                     const realTNCN = realTax(employee).toFixed(2);
-                    console.log(realTax(employee))
+                    let BHXH = 'Có';
+                    if(bhxh === 'false'){
+                        BHXH = 'Không'
+                    }
                     return(
                         <Link to={`/output/${id}`} >
                             <Grid key={id} cursor="pointer" templateColumns="repeat(6,1fr)" gap={5} w="100%" mx="auto"  borderBottom="1px solid #EDF2F7" paddingBottom="8px">
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{id}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{name}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{taxYear}</Flex>
-                                <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{Boolean(bhxh)?'Có':'Không'}</Flex>
+                                <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{BHXH}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{dependent}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{realTNCN}</Flex>
                             </Grid>
