@@ -1,21 +1,14 @@
+import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
-  Link,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
+  Link,
   Stack,
+  useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const Links = ['Trang chủ','Thêm nhân viên', 'Tìm Kiếm'];
 
@@ -49,7 +42,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box>Thuế TNCN</Box>
+            <Box fontWeight="700">Thuế TNCN</Box>
             <HStack
               as={'nav'}
               spacing={4}

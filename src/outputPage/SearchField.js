@@ -203,9 +203,9 @@ const SearchField = () => {
 
   return (
     <Box bg="gray.200" minH="100vh" p={20}>
-      <Box>
+      <Box w="100%" text="center">
         <FormLabel ml={8}> Nhập số điện thoại để tìm </FormLabel>
-        <InputGroup size="md" w={60} mb={12}>
+        <InputGroup size="md" w={60} mb={12} mx="auto">
           <Input
             bg="white"
             pr="4.5rem"
@@ -219,168 +219,185 @@ const SearchField = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
-        {open && (
-          <Box>
-            <Box mx="auto">
-              <Flex mb={20}>
-                <Box>
-                  <Text mb={4}>Họ và Tên:</Text>
-                  <Text mb={4}>Ngày tháng năm sinh:</Text>
-                  <Text mb={4}>Số điện thoại:</Text>
-                  <Text mb={4}>Email:</Text>
-                  <Text mb={4}>Địa chỉ: </Text>
-                </Box>
-                <Box ml={12}>
-                  <Text mb={4}>{data.name}</Text>
-                  <Text mb={4}>
-                    {data.day}/{data.month}/{data.year}
+
+        {open &&
+          (data ? (
+            <Box>
+              <Box mx="auto">
+                <Flex mb={20} w="50vw" justifyContent="space-around" mx="auto">
+                  <Box>
+                    <Text mb={4}>Họ và Tên:</Text>
+                    <Text mb={4}>Ngày tháng năm sinh:</Text>
+                    <Text mb={4}>Số điện thoại:</Text>
+                    <Text mb={4}>Email:</Text>
+                    <Text mb={4}>Địa chỉ: </Text>
+                  </Box>
+                  <Box ml={12}>
+                    <Text mb={4}>{data.name}</Text>
+                    <Text mb={4}>
+                      {data.day}/{data.month}/{data.year}
+                    </Text>
+                    <Text mb={4}>{data.phone}</Text>
+                    <Text mb={4}>{data.email}</Text>
+                    <Text mb={4}>{data.address}</Text>
+                  </Box>
+                </Flex>
+                <Table
+                  variant="simple"
+                  w="70%"
+                  bg="white"
+                  borderRadius="0.25rem"
+                  mx="auto"
+                  boxShadow="2xl"
+                >
+                  <Thead>
+                    <Tr>
+                      <Th>Tháng</Th>
+                      <Th isNumeric>Thu Nhập(Triệu VND)</Th>
+                      <Th isNumeric>Thuế thu nhập(Triệu VND)</Th>
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    <Tr>
+                      <Td>Tháng 1</Td>
+                      <Td isNumeric>{data.valueMonth1}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth1).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 2</Td>
+                      <Td isNumeric>{data.valueMonth2}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth2).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 3</Td>
+                      <Td isNumeric>{data.valueMonth3}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth3).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 4</Td>
+                      <Td isNumeric>{data.valueMonth4}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth4).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 5</Td>
+                      <Td isNumeric>{data.valueMonth5}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth5).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 6</Td>
+                      <Td isNumeric>{data.valueMonth6}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth6).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 7</Td>
+                      <Td isNumeric>{data.valueMonth7}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth7).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 8</Td>
+                      <Td isNumeric>{data.valueMonth8}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth8).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 9</Td>
+                      <Td isNumeric>{data.valueMonth9}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth9).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 10</Td>
+                      <Td isNumeric>{data.valueMonth10}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth10).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 11</Td>
+                      <Td isNumeric>{data.valueMonth11}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth11).toFixed(2)}
+                      </Td>
+                    </Tr>
+                    <Tr>
+                      <Td>Tháng 12</Td>
+                      <Td isNumeric>{data.valueMonth12}</Td>
+                      <Td isNumeric>
+                        {oneMonthTax(data, data.valueMonth12).toFixed(2)}
+                      </Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+                <Box w="70%" mx="auto" textAlign="right" my={8} fontSize="xl">
+                  <Text>
+                    Tổng thuế TNCN đã tạm nộp:{' '}
+                    <Text as="span" color="red">
+                      {tempTax(data)}
+                    </Text>{' '}
+                    triệu VND
                   </Text>
-                  <Text mb={4}>{data.phone}</Text>
-                  <Text mb={4}>{data.email}</Text>
-                  <Text mb={4}>{data.address}</Text>
-                </Box>
-              </Flex>
-              <Table
-                variant="simple"
-                w="70%"
-                bg="white"
-                borderRadius="0.25rem"
-                mx="auto"
-                boxShadow="2xl"
-              >
-                <Thead>
-                  <Tr>
-                    <Th>Tháng</Th>
-                    <Th isNumeric>Thu Nhập(Triệu VND)</Th>
-                    <Th isNumeric>Thuế thu nhập(Triệu VND)</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  <Tr>
-                    <Td>Tháng 1</Td>
-                    <Td isNumeric>{data.valueMonth1}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth1).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 2</Td>
-                    <Td isNumeric>{data.valueMonth2}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth2).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 3</Td>
-                    <Td isNumeric>{data.valueMonth3}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth3).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 4</Td>
-                    <Td isNumeric>{data.valueMonth4}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth4).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 5</Td>
-                    <Td isNumeric>{data.valueMonth5}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth5).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 6</Td>
-                    <Td isNumeric>{data.valueMonth6}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth6).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 7</Td>
-                    <Td isNumeric>{data.valueMonth7}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth7).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 8</Td>
-                    <Td isNumeric>{data.valueMonth8}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth8).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 9</Td>
-                    <Td isNumeric>{data.valueMonth9}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth9).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 10</Td>
-                    <Td isNumeric>{data.valueMonth10}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth10).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 11</Td>
-                    <Td isNumeric>{data.valueMonth11}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth11).toFixed(2)}
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td>Tháng 12</Td>
-                    <Td isNumeric>{data.valueMonth12}</Td>
-                    <Td isNumeric>
-                      {oneMonthTax(data, data.valueMonth12).toFixed(2)}
-                    </Td>
-                  </Tr>
-                </Tbody>
-              </Table>
-              <Box w="70%" mx="auto" textAlign="right" my={8} fontSize="xl">
-                <Text>
-                  Tổng thuế TNCN đã tạm nộp:{' '}
-                  <Text as="span" color="red">
-                    {tempTax(data)}
-                  </Text>{' '}
-                  triệu VND
-                </Text>
-                <Text>
-                  Tổng thuế TNCN thực tế:{' '}
-                  <Text as="span" color="red">
-                    {realTax(data).toFixed(2)}
-                  </Text>{' '}
-                  triệu VND
-                </Text>
-                <Text>
-                  {realTax(data) < tempTax(data) ? `Nhận lại: ` : `Nộp thêm: `}{' '}
-                  <Text as="span" color="red">
+                  <Text>
+                    Tổng thuế TNCN thực tế:{' '}
+                    <Text as="span" color="red">
+                      {realTax(data).toFixed(2)}
+                    </Text>{' '}
+                    triệu VND
+                  </Text>
+                  <Text>
                     {realTax(data) < tempTax(data)
-                      ? (tempTax(data) - realTax(data)).toFixed(2)
-                      : (realTax(data) - tempTax(data)).toFixed(2)}
+                      ? `Nhận lại: `
+                      : `Nộp thêm: `}{' '}
+                    <Text as="span" color="red">
+                      {realTax(data) < tempTax(data)
+                        ? (tempTax(data) - realTax(data)).toFixed(2)
+                        : (realTax(data) - tempTax(data)).toFixed(2)}
+                    </Text>
+                    triệu VND
                   </Text>
-                  triệu VND
-                </Text>
+                </Box>
+              </Box>
+              <Box textAlign="center">
+                <Link to="/">
+                  <Button
+                    //onClick={getData()}
+                    bg="white"
+                    _hover={{ background: 'blue.500', color: 'white' }}
+                  >
+                    Về Trang Input
+                  </Button>
+                </Link>
               </Box>
             </Box>
-            <Box textAlign="center">
+          ) : (
+            <Box w="100%" textAlign="center">
+              <Text mb="4rem">Số điện thoại không tồn tại</Text>
               <Link to="/">
                 <Button
-                  //onClick={getData()}
-                  bg="white"
-                  _hover={{ background: 'blue.500', color: 'white' }}
+                  bg="blue.500"
+                  color="white"
+                  _hover={{ background: 'red.500', color: 'white' }}
                 >
-                  Về Trang Input
+                  Tạo mới
                 </Button>
               </Link>
             </Box>
-          </Box>
-        )}
+          ))}
       </Box>
     </Box>
   );
