@@ -26,15 +26,17 @@ const NavLink = ({ children }) => (
     {children}
   </Link>
 );
-
+// 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  
   return (
     <>
+      
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
+          
             size={'md'}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={'Open Menu'}

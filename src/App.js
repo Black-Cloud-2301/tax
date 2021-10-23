@@ -3,9 +3,11 @@ import React from 'react';
 import InputField from './inputPage/InputField';
 import OutputField from './outputPage/OutputField';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchField from './outputPage/SearchField';
+
 import Navbar from './components/Navbar';
 import Home from './home/Home';
+import SearchFieldPlus from './outputPage/SearchFieldPlus';
+import ErrorPage from './errorPage/ErrorPage';
 
 function App() {
   return (
@@ -16,7 +18,10 @@ function App() {
           <Route exact path="/"><Home/></Route>
           <Route  path="/input" component={InputField} />
           <Route  path="/output/:id" component={OutputField} />
-          <Route  path="/search" component={SearchField} />
+          <Route  path="/search" component={SearchFieldPlus} />
+          <Route  path="/*" > <ErrorPage/></Route>
+          <Route  path="/output/*" > <ErrorPage/></Route>
+
         </Switch>
       </Router>
     </ChakraProvider>

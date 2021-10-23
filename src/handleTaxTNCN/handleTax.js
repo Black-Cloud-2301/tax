@@ -82,3 +82,55 @@ export  const realTax = (data) => {
       else return result * 0.35 - 217.8;
     }
 }
+export const oneMonthTax = income => {
+    if (data.taxYear >= 2021) {
+      let result =
+        income -
+        11 -
+        data.dependent * 4.4 -
+        (data.bhxh === 'true' ? income * 0.08 : 0);
+      if (result <= 0) {
+        return 0;
+      } else if (result <= 5) result = result * 0.05;
+      else if (result <= 10) result = result * 0.1 - 0.25;
+      else if (result <= 18) result = result * 0.15 - 0.75;
+      else if (result <= 32) result = result * 0.2 - 1.65;
+      else if (result <= 52) result = result * 0.25 - 3.25;
+      else if (result <= 80) result = result * 0.3 - 5.85;
+      else result = result * 0.35 - 9.85;
+      return result;
+    } else {
+      let result =
+        income -
+        9 -
+        data.dependent * 4.4 -
+        (data.bhxh === 'true' ? income * 0.08 : 0);
+      if (result <= 0) {
+        return 0;
+      } else if (result <= 5) result = result * 0.05;
+      else if (result <= 10) result = result * 0.1 - 0.25;
+      else if (result <= 18) result = result * 0.15 - 0.75;
+      else if (result <= 32) result = result * 0.2 - 1.65;
+      else if (result <= 52) result = result * 0.25 - 3.25;
+      else if (result <= 80) result = result * 0.3 - 5.85;
+      else result = result * 0.35 - 9.85;
+      return result;
+    }
+  };
+
+export const tempTax = (data) => {
+    const result =
+      oneMonthTax(data.valueMonth1) +
+      oneMonthTax(data.valueMonth2) +
+      oneMonthTax(data.valueMonth3) +
+      oneMonthTax(data.valueMonth4) +
+      oneMonthTax(data.valueMonth5) +
+      oneMonthTax(data.valueMonth6) +
+      oneMonthTax(data.valueMonth7) +
+      oneMonthTax(data.valueMonth8) +
+      oneMonthTax(data.valueMonth9) +
+      oneMonthTax(data.valueMonth10) +
+      oneMonthTax(data.valueMonth11) +
+      oneMonthTax(data.valueMonth12);
+    return result.toFixed(2);
+  }; 
