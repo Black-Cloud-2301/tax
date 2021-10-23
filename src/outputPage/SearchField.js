@@ -204,7 +204,7 @@ const SearchField = () => {
   return (
     <Box bg="gray.200" minH="100vh" p={20}>
       <Box w="100%" text="center">
-        <FormLabel ml={8}> Nhập số điện thoại để tìm </FormLabel>
+        <FormLabel  ml={8}> Nhập số điện thoại để tìm </FormLabel>
         <InputGroup size="md" w={60} mb={12} mx="auto">
           <Input
             bg="white"
