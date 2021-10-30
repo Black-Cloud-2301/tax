@@ -25,21 +25,21 @@ const EmployeeManage = () => {
                 <Flex border="1px solid #EDF2F7" padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">Email</Flex>
                 <Flex border="1px solid #EDF2F7" padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">Tính thuế TNCN (trđ)</Flex>
             </Grid>
-            <Box border="1px solid #EDF2F7" w="95%" mx="auto" paddingTop="8px">
+            <Box border="1px solid #EDF2F7" w="95%" mx="auto" >
 
                 {data.map((employee) => {
                     const {id,name,day,month,year,phone,email} = employee;
                     
                     return(
                         
-                            <Grid key={id}  cursor="pointer" templateColumns="repeat(6,1fr)" gap={5} w="100%" mx="auto"  borderBottom="1px solid #EDF2F7" paddingBottom="8px">
+                            <Grid key={id}   templateColumns="repeat(6,1fr)" gap={5} w="100%" mx="auto"  borderBottom="1px solid #EDF2F7" paddingBottom="8px" paddingTop='8px'>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{id}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{name}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{day}/{month}/{year}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{phone}</Flex>
                                 <Flex  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">{email}</Flex>
                                 <Link to={`/manager/${id}/inputtax`}>
-                                    <Button  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">Tính Thuế</Button>
+                                    <Button cursor="pointer"  padding="4px 0px" align="center" justify="center" w="100%" h="100%" bg="white">Tính Thuế</Button>
                                 </Link>
                             </Grid>
                         
