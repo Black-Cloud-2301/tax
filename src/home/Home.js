@@ -8,6 +8,10 @@ const Home = () => {
             <Link to='/department'>
                 <Flex cursor='pointer' marginBottom='8px' padding="8px 0px" align="center" justify="center" w="100%" h="100%" bg="#EDF2F7">Quản lý phòng ban</Flex>
             </Link>
+            <Link to='/report'>
+                <Flex  cursor='pointer' marginBottom='8px' padding="8px 0px" align="center" justify="center" w="100%" h="100%" bg="#EDF2F7">Báo cáo</Flex>
+
+            </Link>
             <Link to='/setting'>
                 <Flex  cursor='pointer' marginBottom='8px' padding="8px 0px" align="center" justify="center" w="100%" h="100%" bg="#EDF2F7">Thiết lập các hạn mức</Flex>
 

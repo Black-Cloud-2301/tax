@@ -20,7 +20,7 @@ const Department = () => {
         <>
             <form onSubmit={addDepartment}>
                 <Box w='40%' mx='auto' marginTop='4rem' marginBottom='2rem' alignItems='center'>
-                    <Input borderRadius='unset' w='80%' type='text' placeholder='Thêm phòng ban' value={departmentTemp.department} onChange={(e) => setDepartmentTemp({id:new Date().toString(),department: e.target.value})}/>
+                    <Input borderRadius='unset' w='80%' type='text' placeholder='Thêm phòng ban' value={departmentTemp.department} onChange={(e) => setDepartmentTemp({id:new Date().getTime().toString(),department: e.target.value})}/>
                     <Button w='20%' marginBottom='4px' type='button' bg='#EDF2F7'  borderRadius='unset' onClick={addDepartment}>Thêm</Button>
                 </Box>
             </form>

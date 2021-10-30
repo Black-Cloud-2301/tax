@@ -12,6 +12,8 @@ import EmployeeManage from './employeeManage/EmployeeManage';
 import Department from './department/Department';
 import InputTax from './inputPage/InputTax';
 import Setting from './handleTaxTNCN/Setting';
+import Report from './report/Report';
+import ReportDepartment from './report/ReportDepartment';
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/manager/:name" component={EmployeeManage}></Route>
           <Route  path="/output/:id" component={OutputField} />
           <Route  path="/search" component={SearchFieldPlus} />
+          <Route path="/report/:name" component={ReportDepartment}/>
+          <Route path="/report" component={Report}/>
           <Route  path="/setting" component={Setting} />
           <Route path="/department"  ><Department/></Route>
           <Route  path="/*" > <ErrorPage/></Route>

@@ -324,16 +324,16 @@ const OutputField = () => {
           </Text>
         </Box>
       </Box>
-      <Box textAlign="center">
-        <Link to="/">
+      <Flex w='30%' mx='auto' justifyContent='center' textAlign="center">
+        <Link to={`/report`}>
           <Button
             bg="white"
             _hover={{ background: 'blue.500', color: 'white' }}
           >
-            Về trang chủ
+            Quay Về
           </Button>
         </Link>
-      </Box>
+      </Flex>
     </Box>
   );
 };
