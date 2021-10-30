@@ -9,7 +9,7 @@ import {
   Button,
   Box,
 } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link,useParams } from 'react-router-dom';
 import { data } from '../data/tempData';
 import { useGlobalContext } from '../context';
 
@@ -17,12 +17,13 @@ import { useGlobalContext } from '../context';
 
 const InputField = () => {
   const {setEmployee,employee,handleAddEmployee,listEmploy} = useGlobalContext();
- 
-  
+  const {name} = useParams();
+  console.log(name);
 
-  
-    
-  
+  useEffect(() => {
+    setEmployee({...employee,department:name});
+  },[])
+
   return (
     <>
       <Box w="70%" mx="auto">
@@ -151,157 +152,9 @@ const InputField = () => {
 
             />
           </GridItem>
-          <GridItem colSpan={2}>
-            <Flex justify="space-between">
-              <Box>
-                <FormLabel> Năm tính thuế </FormLabel>
-                <Input
-                  type="text"
-                  placeholder="2021"
-                  size="md"
-                  w={32}
-                  onChange={e => setEmployee({...employee,taxYear: parseInt(e.target.value)})}
-                />
-              </Box>
-              <Box>
-                <FormLabel> Bảo hiểm xã hội </FormLabel>
-                <Select
-                  type="text"
-                  size="md"
-                  placeholder="Chọn"
-                  onChange={(e) => setEmployee({...employee,bhxh :e.target.value})}
-                >
-                  <option value={true}>Có</option>
-                  <option value={false}>Không</option>
-                </Select>
-              </Box>
-              <Box>
-                <FormLabel> Số người phụ thuộc </FormLabel>
-                <Input
-                  type="text"
-                  placeholder="0"
-                  size="md"
-                  w={36}
-                  onChange={e => setEmployee({...employee,dependent : parseInt(e.target.value)})}
-                />
-              </Box>
-            </Flex>
-          </GridItem>
-        </Grid>
-        <FormLabel my={12} fontSize="2xl" textAlign="center">
-          Thu Nhập Các Tháng
-        </FormLabel>
-        <Grid templateColumns="repeat(4,1fr)" gap={12}>
-          <GridItem>
-            <FormLabel> Tháng 1 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth1 :parseFloat(e.target.value)})}
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 2 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth2 :parseFloat(e.target.value)})}
-
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 3 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth3 :parseFloat(e.target.value)})}
-             
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 4 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth4 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 5 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth5 :parseFloat(e.target.value)})}
-             
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 6 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth6 :parseFloat(e.target.value)})}
-             
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 7 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth7 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 8 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth8 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 9 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth9 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 10 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth10 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 11 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth11 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
-          <GridItem>
-            <FormLabel> Tháng 12 </FormLabel>
-            <Input
-              placeholder="0"
-              size="md"
-              onChange={e => setEmployee({...employee,valueMonth12 :parseFloat(e.target.value)})}
-              
-            />
-          </GridItem>
         </Grid>
         <Box textAlign="center">
-          <Link to="/">
+          <Link to={`/manager/${name}`}>
             <Button my={12} w={60} onClick={handleAddEmployee}>
               Nhập thông tin nhân viên 
             </Button>
