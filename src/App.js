@@ -8,6 +8,10 @@ import Navbar from './components/Navbar';
 import Home from './home/Home';
 import SearchFieldPlus from './outputPage/SearchFieldPlus';
 import ErrorPage from './errorPage/ErrorPage';
+import EmployeeManage from './employeeManage/EmployeeManage';
+import Department from './department/Department';
+import InputTax from './inputPage/InputTax';
+import Setting from './handleTaxTNCN/Setting';
 
 function App() {
   return (
@@ -16,12 +20,15 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/"><Home/></Route>
-          <Route  path="/input" component={InputField} />
+          <Route  path="/manager/:name/input" component={InputField} />
+          <Route  path="/manager/:id/inputtax" component={InputTax} />
+          <Route path="/manager/:name" component={EmployeeManage}></Route>
           <Route  path="/output/:id" component={OutputField} />
           <Route  path="/search" component={SearchFieldPlus} />
+          <Route  path="/setting" component={Setting} />
+          <Route path="/department"  ><Department/></Route>
           <Route  path="/*" > <ErrorPage/></Route>
           <Route  path="/output/*" > <ErrorPage/></Route>
-
         </Switch>
       </Router>
     </ChakraProvider>

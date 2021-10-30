@@ -49,8 +49,9 @@ import { oneMonthTax,realTax,tempTax } from '../handleTaxTNCN/handleTax';
 const OutputField = () => {
   const {id} = useParams();
   
-  const {listEmploy} = useGlobalContext();
-
+  const {listEmploy,except} = useGlobalContext();
+  const {bhxhExcept,deductibleLevel,dependentExcept} = except;
+  console.log(typeof dependentExcept)
   const data = listEmploy.find((item) => item.id === id)
   
   // const oneMonthTax = income => {
@@ -176,7 +177,7 @@ const OutputField = () => {
             </Text>
         </Flex>)
   }
-
+  
   return (
     <Box bg="gray.200" p={20}>
       <Box mx="auto">
@@ -238,62 +239,62 @@ const OutputField = () => {
             <Tr>
               <Td>Tháng 1</Td>
               <Td isNumeric>{data.valueMonth1}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth1).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth1,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 2</Td>
               <Td isNumeric>{data.valueMonth2}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth2).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth2,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 3</Td>
               <Td isNumeric>{data.valueMonth3}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth3).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth3,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 4</Td>
               <Td isNumeric>{data.valueMonth4}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth4).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth4,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 5</Td>
               <Td isNumeric>{data.valueMonth5}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth5).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth5,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 6</Td>
               <Td isNumeric>{data.valueMonth6}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth6).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth6,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 7</Td>
               <Td isNumeric>{data.valueMonth7}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth7).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth7,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 8</Td>
               <Td isNumeric>{data.valueMonth8}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth8).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth8,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 9</Td>
               <Td isNumeric>{data.valueMonth9}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth9).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth9,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 10</Td>
               <Td isNumeric>{data.valueMonth10}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth10).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth10,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 11</Td>
               <Td isNumeric>{data.valueMonth11}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth11).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth11,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
             <Tr>
               <Td>Tháng 12</Td>
               <Td isNumeric>{data.valueMonth12}</Td>
-              <Td isNumeric>{oneMonthTax(data.valueMonth12).toFixed(2)}</Td>
+              <Td isNumeric>{oneMonthTax(data.valueMonth12,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}</Td>
             </Tr>
           </Tbody>
         </Table>
@@ -301,23 +302,23 @@ const OutputField = () => {
           <Text>
             Tổng thuế TNCN đã tạm nộp:{' '}
             <Text as="span" color="red">
-              {tempTax(data)}
+              {tempTax(data,bhxhExcept,dependentExcept,deductibleLevel)}
             </Text>{' '}
             triệu VND
           </Text>
           <Text>
             Tổng thuế TNCN thực tế:{' '}
             <Text as="span" color="red">
-              {realTax(data).toFixed(2)}
+              {realTax(data,bhxhExcept,dependentExcept,deductibleLevel).toFixed(2)}
             </Text>{' '}
             triệu VND
           </Text>
           <Text>
-            {realTax(data) < tempTax(data) ? `Nhận lại: ` : `Nộp thêm: `}{' '}
+            {realTax(data,bhxhExcept,dependentExcept,deductibleLevel) < tempTax(data,bhxhExcept,dependentExcept,deductibleLevel) ? `Nhận lại: ` : `Nộp thêm: `}{' '}
             <Text as="span" color="red">
-              {realTax(data) < tempTax(data)
-                ? (tempTax(data) - realTax(data)).toFixed(2)
-                : (realTax(data) - tempTax(data)).toFixed(2)}
+              {realTax(data,bhxhExcept,dependentExcept,deductibleLevel) < tempTax(data,bhxhExcept,dependentExcept,deductibleLevel)
+                ? (tempTax(data,bhxhExcept,dependentExcept,deductibleLevel) - realTax(data,bhxhExcept,dependentExcept,deductibleLevel)).toFixed(2)
+                : (realTax(data,bhxhExcept,dependentExcept,deductibleLevel) - tempTax(data,bhxhExcept,dependentExcept,deductibleLevel)).toFixed(2)}
             </Text>
             triệu VND
           </Text>

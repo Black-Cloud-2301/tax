@@ -10,7 +10,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-const Links = ['Trang chủ','Thêm nhân viên', 'Tìm Kiếm'];
+const Links = ['Trang chủ','Phòng ban', 'Setting'];
 
 const NavLink = ({ children }) => (
   <Link
@@ -70,7 +70,7 @@ export default function Navbar() {
                   textDecoration: 'none',
                   bg: useColorModeValue('gray.200', 'gray.700'),
                 }}
-                href="/input"
+                href="/department"
               >
                 {Links[1]}
               </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
                   textDecoration: 'none',
                   bg: useColorModeValue('gray.200', 'gray.700'),
                 }}
-                href="/search"
+                href="/setting"
               >
                 {Links[2]}
               </Link>
